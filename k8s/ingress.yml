@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1 # The API version of kubernetes API to use, this can be found using command 'kubectl api-versions'
+kind: Ingress # The kind of kubernetes object to create
+metadata: # The metadata for the deployment
+  name: polar-ingress
+spec: # The deployment spec
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: edge-service
+                port:
+                  number: 80
